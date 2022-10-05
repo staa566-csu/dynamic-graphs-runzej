@@ -1,0 +1,36 @@
+---
+title: "Untitled"
+author: "Runze Jiang"
+date: "2022/9/20"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r}
+library(ggplot2)
+library(plotly)
+View(economics)
+eco <- plot_ly(economics,x= ~date,y=~unemploy,type = 'scatter',mode='markers')
+eco
+eco2 <- plot_ly(economics,x=~date)%>%
+  add_lines(y=~uempmed,name="median")%>%
+  add_lines(y=~unemploy,name="num in thousands")
+eco2
+eco3 <- eco2%>%
+  layout(title="Umployment",
+         xaxis=list(title=NA),
+         yaxis=list(title="Number of Employment"))
+eco3
+           
+
+
+```
+
+(a)data source:
+The economics data set is inside R and it describes the relationship between the rate of unemployment and the time series. The main variables I use here is "unemploy"(refers to the number of unemployed in thousands)
+
+(b)Research question:
+I want to discover "Is there a increasing of the number of unemployed from 1967 to 2015 ?"
+
+(c)Plot_ly is the function I mainly use here because the x-axis is timely series and y-axis is the response varibale.Also use the lay-out function to specify the names and titles.
